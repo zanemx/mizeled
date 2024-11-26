@@ -114,7 +114,9 @@ class Game {
         }
 
         // set the text
-        tileEl.innerHTML = this.game.grid.tiles[i].match_id;
+        if(this.game.grid.tiles[i].matched) {
+          tileEl.innerHTML = this.game.grid.tiles[i].match_id;
+        }
 
         tileEl.addEventListener("click", () => {
           this.onSelectTile(this.game.grid.tiles[i]);
@@ -124,19 +126,24 @@ class Game {
     }
   }
   onSelectTile (tile) {
-    document.getElementById(`tile-${tile.id}`).classList.add("selected-tile");
-    if(this.selected_tile) {
-      if(this.check_for_match(tile)){
-        return;
-      }
-      setTimeout(() => {
-        document.getElementById(`tile-${this.selected_tile.id}`).classList.remove("selected-tile");
-        document.getElementById(`tile-${tile.id}`).classList.remove("selected-tile");
-        this.selected_tile = null;
-      }, 100);
+    if(this.game && this.game.state === 'lost') {
       return;
     }
-    this.selected_tile = tile;
+    document.getElementById(`tile-${tile.id}`).classList.add("selected-tile");
+    document.getElementById(`tile-${tile.id}`).innerHTML = tile.match_id;
+    if(this.selected_tile) {
+      if(this.check_for_match(tile)){
+        console.log('match');
+      }else { 
+        setTimeout(() => {
+          document.getElementById(`tile-${this.selected_tile.id}`).classList.remove("selected-tile");
+          document.getElementById(`tile-${tile.id}`).classList.remove("selected-tile");
+          this.selected_tile = null;
+        }, 1000);
+      }
+    }else { 
+      this.selected_tile = tile;
+    }
   }
   check_for_match (tile) {
     fetch(`/api/v1/game/${this.user_id}/${this.game.id}/play`, {
@@ -152,8 +159,11 @@ class Game {
           alert(data.error);
           return;
         }
-        this.game = data.data.game;
-        this.selectGame(this.game.id);
+        // Wait a little bit to allow the player to see the card id
+        setTimeout(() => {
+          this.game = data.data.game;
+          this.selectGame(this.game.id);
+        }, 800);
       });
   }
 }
