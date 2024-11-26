@@ -96,15 +96,18 @@ header > nav > ul > li > a {
 .content {
   padding: 16px;
   display: flex;
+  flex-direction: column;
   gap: 16px;
   justify-content: space-around;
-  max-width: 1024px;
+  align-items: center;
 }
 
 .game-list-container {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-top: 300px;
+
 }
 
 .game-list-container > h2 {
@@ -203,3 +206,9 @@ button:hover {
   display: none;
 }
 
+
+.game-container {
+  display: flex;
+  height: 500px;
+  gap: 16px;
+}
