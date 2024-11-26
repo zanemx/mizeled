@@ -1,4 +1,5 @@
 uvicorn
+uvicorn-worker
 fastapi
 starlette
 nanoid
