@@ -70,6 +70,7 @@ def play_move(user_id, game_id, a, b):
         # |_|  |_|\__,_|_|_| |_|_|\_\\
         # """
         # print(ascii_art)
+        print("MATCH")
 
         grid["tiles"][int(a)]["matched"] = True
         grid["tiles"][int(b)]["matched"] = True
