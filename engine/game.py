@@ -61,15 +61,15 @@ def play_move(user_id, game_id, a, b):
     grid = json.loads(game["grid"])
     matched = False
     if grid["tiles"][int(a)]["match_id"] == grid["tiles"][int(b)]["match_id"]:
-        ascii_art = """
-         __  __       _       _     
-        |  \/  |     (_)     | |    
-        | \  / | __ _ _ _ __ | | __ 
-        | |\/| |/ _` | | '_ \| |/ / 
-        | |  | | (_| | | | | |   <  
-        |_|  |_|\__,_|_|_| |_|_|\_\\
-        """
-        print(ascii_art)
+        # ascii_art = """
+        #  __  __       _       _
+        # |  \/  |     (_)     | |
+        # | \  / | __ _ _ _ __ | | __
+        # | |\/| |/ _` | | '_ \| |/ /
+        # | |  | | (_| | | | | |   <
+        # |_|  |_|\__,_|_|_| |_|_|\_\\
+        # """
+        # print(ascii_art)
 
         grid["tiles"][int(a)]["matched"] = True
         grid["tiles"][int(b)]["matched"] = True
