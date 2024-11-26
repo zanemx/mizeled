@@ -1,0 +1,18 @@
+uvicorn
+fastapi
+starlette
+nanoid
+python-dotenv
+pydantic==2.9.2
+# openai
+# elevenlabs
+redis
+# pandas
+# pytrends
+# ChatTTS @ git+https://github.com/2noise/ChatTTS.git
+# chattts
+# torch
+# torchaudio
+
+
+
